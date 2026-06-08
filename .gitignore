@@ -1,0 +1,35 @@
+# 环境变量 - 包含 API Key，绝对不提交
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+*.egg
+
+# 生成输出 - 临时文件和用户数据
+data/output/*.docx
+data/output/*.md
+data/output/*.bib
+data/history.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# pytest
+.pytest_cache/
+
+# 临时文件
+*.tmp
+*.temp

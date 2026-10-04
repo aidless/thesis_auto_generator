@@ -1,5 +1,7 @@
 # 论文自动生成系统 (Thesis Auto Generator)
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 > **AI 学术写作引擎 v2.2** — 输入主题 + 关键词，自动生成毕业论文
 
 ## 功能

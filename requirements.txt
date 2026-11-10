@@ -5,7 +5,7 @@ docxtpl>=0.16,<1.0
 requests>=2.31
 crossref-commons>=0.0.7
 python-dotenv>=1.0
-markdown>=3.5
+markdown>=3.11.3
 # ── P1 新增 ──
 openpyxl>=3.1
 Pillow>=10.0

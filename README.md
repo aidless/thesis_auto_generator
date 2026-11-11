@@ -1,5 +1,7 @@
 # 论文自动生成系统 (Thesis Auto Generator)
 
+> **English TL;DR**: A graduation-thesis writing engine that turns a topic and keywords into a DOCX manuscript with real-reference lookup, three-line tables, and a three-agent blind review. The committed `docs/system-report.md` records three historical end-to-end generations and a 189/189 test run; this U1 pass re-ran the test suite locally but did **not** re-run generation (it needs a DeepSeek API key and 3–4 minutes per thesis).
+
 [![CI](https://github.com/aidless/thesis_auto_generator/actions/workflows/checks.yml/badge.svg)](https://github.com/aidless/thesis_auto_generator/actions/workflows/checks.yml)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -86,3 +88,51 @@ python -m pytest tests/ -v  # 189 tests
 ## 成本
 
 DeepSeek API: ~¥0.06 / 篇 (15,000字)
+
+## U1 results table (recomputed 2026-11-11)
+
+The values below are parsed live from the committed report, not from memory;
+each row cites the exact source line. The historical generation numbers are
+**not** re-measured in this pass.
+
+| Metric | Values (runs 1 / 2 / 3) | Source (path:line) |
+|---|---|---|
+| 总字数 (3 次)  | 17,056 / 17,486 / 18,809 | `docs/system-report.md:196` |
+| 总耗时 (s, 3 次) | 201 / 207 / 256 | `docs/system-report.md:197` |
+| 含表格章节 (3 次) | 0/6 / 4/7 / 3/6 | `docs/system-report.md:198` |
+| DOCX 表格数 (3 次) | 0 / 1 / 6 | `docs/system-report.md:199` |
+| 参考文献数 (3 次) | 16 / 15 / 12 | `docs/system-report.md:202` |
+
+Blind-review scores on the v2.1 output (same report):
+
+| Dimension | Score | Verdict | Source (path:line) |
+|---|---|---|---|
+| 创新性 | 16/10 | `reject` | `docs/system-report.md:211` |
+| 方法 | 32/10 | `major_revision` | `docs/system-report.md:212` |
+| 规范性 | 27/10 | `major_revision` | `docs/system-report.md:213` |
+
+| Live check | Value | Source |
+|---|---|---|
+| Unit tests, executed for this pass | **189 passed in 1.37s** | `python3 -m pytest tests/ -q` (exit 0) |
+| Test files under `tests/` | 6 | live `glob test_*.py` |
+| Report header test count | `189/189` | `docs/system-report.md:3` |
+
+**Quickstart command actually executed for this pass**:
+
+```bash
+python3 -m pytest tests/ -q
+# 189 passed in 1.37s
+```
+
+**NOT YET MEASURED in this pass**: an end-to-end thesis generation. It needs a
+DeepSeek API key, costs about ¥0.05–0.06 and 3–4 minutes per thesis
+(`docs/system-report.md:225`); the three runs above are historical records.
+Reproduce with an API key:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 check_env.py
+python3 run_e2e_v3.py --topic "<topic>" --keywords "<kw>" --review
+```
+
+<!-- figure: pending real measurement -->

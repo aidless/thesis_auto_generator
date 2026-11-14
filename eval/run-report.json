@@ -1,0 +1,129 @@
+{
+ "total": 20,
+ "passed": 20,
+ "failed": 0,
+ "selftest": false,
+ "failed_by_axis": {},
+ "results": [
+  {
+   "id": "TXT-01",
+   "axis": "text/字数统计",
+   "ok": true,
+   "detail": "14"
+  },
+  {
+   "id": "TXT-02",
+   "axis": "text/章节拆分",
+   "ok": true,
+   "detail": "第一章 绪论|第二章 方法|第三章 结论"
+  },
+  {
+   "id": "MOD-01",
+   "axis": "models/引用格式",
+   "ok": true,
+   "detail": "A B, C D, E F, 等. Deep learning for text[J]. Journal of AI, 2021. DOI: 10.1/x."
+  },
+  {
+   "id": "MOD-02",
+   "axis": "models/引用格式",
+   "ok": true,
+   "detail": "@misc{K2,"
+  },
+  {
+   "id": "MOD-03",
+   "axis": "models/状态机",
+   "ok": true,
+   "detail": "2067"
+  },
+  {
+   "id": "STA-01",
+   "axis": "stats/设计检查",
+   "ok": true,
+   "detail": "critical|1"
+  },
+  {
+   "id": "STA-02",
+   "axis": "stats/设计检查",
+   "ok": true,
+   "detail": "info|info|2"
+  },
+  {
+   "id": "STA-03",
+   "axis": "stats/检验执行",
+   "ok": true,
+   "detail": "3.674|10|2.12"
+  },
+  {
+   "id": "TPL-01",
+   "axis": "template/样式口径",
+   "ok": true,
+   "detail": "16/1/12/31.7"
+  },
+  {
+   "id": "TPL-02",
+   "axis": "template/样式口径",
+   "ok": true,
+   "detail": "默认模板|31.7|黑体"
+  },
+  {
+   "id": "KG-01",
+   "axis": "kg/图谱统计",
+   "ok": true,
+   "detail": "3|2|0.3333|2"
+  },
+  {
+   "id": "REF-01",
+   "axis": "refs/检索口径",
+   "ok": true,
+   "detail": "深度学习|文本分类|知识图谱|注意力机制|预训练"
+  },
+  {
+   "id": "DOC-01",
+   "axis": "docx/表格解析",
+   "ok": true,
+   "detail": "2|2|4|准确率|BERT"
+  },
+  {
+   "id": "ALL-01",
+   "axis": "alloc/字数分配",
+   "ok": true,
+   "detail": "1500/6150/6150/1200"
+  },
+  {
+   "id": "TST-01",
+   "axis": "tests/套件规模",
+   "ok": true,
+   "detail": "6|189|63"
+  },
+  {
+   "id": "CFG-01",
+   "axis": "llm/提供商校验",
+   "ok": true,
+   "detail": "raised ValueError"
+  },
+  {
+   "id": "IMP-01",
+   "axis": "data/格式校验",
+   "ok": true,
+   "detail": "raised ValueError"
+  },
+  {
+   "id": "CHG-01",
+   "axis": "chapter/章级校验",
+   "ok": true,
+   "detail": "raised ValueError"
+  },
+  {
+   "id": "DOC-02",
+   "axis": "docs/报告数字",
+   "ok": true,
+   "detail": "| 总字数 | 17,056 |"
+  },
+  {
+   "id": "REQ-01",
+   "axis": "deps/依赖钉版",
+   "ok": true,
+   "detail": "python-docx>=1.0,<2.0"
+  }
+ ]
+}

@@ -238,3 +238,26 @@ python3 run_e2e_v3.py --topic "<topic>" --keywords "<kw>" --review
 ```
 
 <!-- figure: pending real measurement -->
+
+## 验收题库与复算
+
+`eval/cases.jsonl` 是 20 条可执行验收题：15 条 `expr` + 3 条 `raises`（共 18 条**真调本仓库 API**）
+加 2 条 `doc`（真读仓内文件）。覆盖的口径：字数与章节拆分、GB/T 7714 与 BibTeX 引用格式、
+章节状态机与进度、统计设计检查与 t 检验、模板预设与损坏模板回退、知识图谱统计、检索技术词过滤、
+Markdown 三线表解析、字数分配、`tests/` 套件规模（ast 计数）、LLM 提供商校验、数据文件格式校验、
+端到端报告数字与依赖钉版。期望值都是跑出来的，不是抄文档——改一行实现就可能变红。
+
+```bash
+python3 eval/run_cases.py            # 20/20 cases passed，退出码 0
+python3 eval/run_cases.py --save     # 顺带把结果写进 eval/run-report.json
+python3 eval/run_cases.py --selftest # 篡改一条期望值，必须变红（19/20，证明这套题会失败）
+```
+
+**数字如何复算**：`eval/run-report.json` 里每条 case 带 `id` / `axis` / `detail`，把 `detail`
+与 `cases.jsonl` 的 `verify` 代码对着看，就能从源码复现该数字——例如 `STA-03` 的
+`3.674|10|2.12` 就是 `StatsEngine.run_test` 在固定样本上的 `statistic|df|cohens_d`；
+`--save` 重跑一次即可重建整份报告，不需要手工抄数。
+
+**失败归因**：`run_cases.py` 不只报通过率，失败时按 `axis` 汇总（例如
+`text/字数统计: 1 条 —— TXT-01`），直接指出是哪个模块的哪个口径坏了。新增题目沿用同一规则：
+一个 axis 最多 3 条，`source` 必须指向真实存在的实现或数据文件。

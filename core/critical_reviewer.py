@@ -6,7 +6,6 @@
 
 import json
 import logging
-from typing import Dict, List, Optional
 
 from llm.base import BaseLLMClient
 from core.knowledge_graph import KnowledgeGraph

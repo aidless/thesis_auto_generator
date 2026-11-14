@@ -19,7 +19,7 @@ import json
 import sqlite3
 import logging
 import threading
-from typing import List, Dict, Optional
+from typing import List, Optional
 from datetime import datetime
 from contextlib import contextmanager
 

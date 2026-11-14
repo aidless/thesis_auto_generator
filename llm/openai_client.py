@@ -5,7 +5,7 @@ OpenAI API 适配器
 API 调用方式与 DeepSeekClient 保持一致。
 """
 
-from typing import Dict, List, Iterator, Optional
+from typing import Dict, List, Iterator
 import logging
 
 from llm.base import BaseLLMClient

@@ -388,7 +388,7 @@ class ReferenceFetcher:
             return []
         except requests.exceptions.HTTPError as e:
             if hasattr(e, 'response') and e.response is not None and e.response.status_code == 429:
-                logger.warning(f"Semantic Scholar 429 限流，启用指数退避")
+                logger.warning("Semantic Scholar 429 限流，启用指数退避")
                 self._mark_rate_limited()
             else:
                 logger.warning(f"Semantic Scholar HTTP 错误: {e}")

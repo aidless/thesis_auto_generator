@@ -13,7 +13,7 @@ import json
 import re
 import logging
 import threading
-from typing import Dict, List, Optional, Any, Tuple
+from typing import Dict, List, Optional, Any
 from datetime import datetime
 
 from llm.base import BaseLLMClient
@@ -440,7 +440,7 @@ class ReviewEngine:
         )
 
         if errors:
-            report += f"\n\n---\n⚠️ **评审异常**：以下 Agent 未能完成评审：\n"
+            report += "\n\n---\n⚠️ **评审异常**：以下 Agent 未能完成评审：\n"
             for e in errors:
                 report += f"- {e}\n"
 

@@ -8,7 +8,7 @@ LLM 客户端抽象层
 """
 
 from abc import ABC, abstractmethod
-from typing import Dict, List, Iterator, Optional
+from typing import Dict, List, Iterator
 
 # 使用 TYPE_CHECKING 避免循环导入
 from typing import TYPE_CHECKING

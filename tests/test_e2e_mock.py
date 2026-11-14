@@ -9,24 +9,19 @@ Mock 端到端测试（test_e2e_mock.py）
 
 import os
 import sys
-import json
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch, MagicMock
-from typing import List
 
 # 确保项目根目录在 sys.path
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from core.models import (
-    Thesis, Outline, OutlineNode, Chapter, Reference,
-    TemplateStyles, StyleDef,
+    Thesis, Chapter, Reference,
+    TemplateStyles,
 )
-from core.template_parser import TemplateParser
 from core.docx_formatter import DocxFormatter
-from utils.file_utils import generate_output_filename, get_output_dir, ensure_dir
 from utils.text_utils import estimate_word_count
 from utils.watermark import add_watermark_and_disclaimer
 from docx import Document  # P4: 用于 DOCX 结构验证
@@ -539,7 +534,7 @@ if __name__ == "__main__":
     print(f"\n{'=' * 60}")
     if result.wasSuccessful():
         print(f"  🎉 全部 {result.testsRun} 个端到端测试通过")
-        print(f"  核心生成链路: 主题 → 大纲 → 6章 → DOCX → 水印 → ✅")
+        print("  核心生成链路: 主题 → 大纲 → 6章 → DOCX → 水印 → ✅")
     else:
         print(f"  ❌ {len(result.failures)} 个失败, {len(result.errors)} 个错误")
         for test, traceback in result.failures + result.errors:

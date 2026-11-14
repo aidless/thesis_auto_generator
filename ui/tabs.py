@@ -9,13 +9,11 @@ Gradio Tab 页面定义
 - Tab 5「历史管理」：生成历史查看（P1 新增）
 """
 
-from typing import Dict, Any, Tuple, List
 
 import gradio as gr
 
 from ui.components import (
     create_markdown_editor,
-    create_markdown_preview,
     create_api_key_input,
     create_word_count_slider,
 )

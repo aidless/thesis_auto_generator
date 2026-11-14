@@ -11,7 +11,7 @@
 """
 
 import logging
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 from core.models import TemplateStyles, StyleDef
 

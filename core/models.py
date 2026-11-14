@@ -101,10 +101,10 @@ class Outline:
         """
         lines: List[str] = [
             f"# 论文大纲：{self.topic}",
-            f"",
+            "",
             f"**关键词**：{'、'.join(self.keywords)}",
             f"**学科方向**：{self.discipline}",
-            f"",
+            "",
             "---",
             "",
         ]
@@ -115,9 +115,9 @@ class Outline:
                 prefix = "#" * (node.level + 1)   # level1→##，level2→###
                 lines.append(f"{prefix} {node.title}")
                 if node.content:
-                    lines.append(f"")
+                    lines.append("")
                     lines.append(f"> {node.content}")
-                lines.append(f"")
+                lines.append("")
 
             for child in node.children:
                 _render_node(child, depth + 1)
@@ -395,8 +395,8 @@ class Thesis:
             str: 格式化的摘要信息
         """
         lines = [
-            f"## 论文信息摘要",
-            f"",
+            "## 论文信息摘要",
+            "",
             f"- **主题**：{self.topic}",
             f"- **关键词**：{'、'.join(self.keywords)}",
             f"- **目标字数**：{self.target_word_count:,} 字",

@@ -17,7 +17,7 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.models import TemplateStyles, StyleDef
+from core.models import TemplateStyles
 
 try:
     from docx import Document

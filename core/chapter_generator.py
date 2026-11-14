@@ -14,7 +14,7 @@ from datetime import datetime
 from typing import List, Optional, Callable
 
 from llm.base import BaseLLMClient
-from core.models import Outline, OutlineNode, Chapter, Thesis
+from core.models import Outline, OutlineNode, Chapter
 from prompts.chapter_prompts import (
     CHAPTER_SYSTEM_PROMPT,
     CITATION_GUIDELINES,

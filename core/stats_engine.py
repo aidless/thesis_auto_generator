@@ -11,7 +11,6 @@
 
 import logging
 from typing import Dict, List, Optional, Tuple, Any
-from collections import Counter
 
 logger = logging.getLogger(__name__)
 
@@ -72,7 +71,7 @@ class StatsEngine:
             warnings.append({
                 "severity": "warning",
                 "message": f"样本量 {sample_count} 例，处于小样本边缘",
-                "suggestion": f"建议进行功效分析（功效≥0.8 所需最小样本量），同时报告效应量和置信区间",
+                "suggestion": "建议进行功效分析（功效≥0.8 所需最小样本量），同时报告效应量和置信区间",
             })
 
         # 多重比较警示
@@ -94,7 +93,7 @@ class StatsEngine:
                 warnings.append({
                     "severity": "info",
                     "message": f"混合变量类型：{len(continuous_cols)} 连续 + {len(categorical_cols)} 分类",
-                    "suggestion": f"连续变量间建议做 Pearson/Spearman 相关；分类-连续建议做 ANOVA（2组用t检验）",
+                    "suggestion": "连续变量间建议做 Pearson/Spearman 相关；分类-连续建议做 ANOVA（2组用t检验）",
                 })
 
         return warnings
@@ -225,7 +224,7 @@ class StatsEngine:
                        "significant": p < 0.05,
                        "apa_text": f"Spearman 秩相关显示 ρ={stat:.2f}, p={p:.3f}"}
 
-            return {"test": test_type, "error": f"不支持的检验类型或参数不足"}
+            return {"test": test_type, "error": "不支持的检验类型或参数不足"}
         except Exception as e:
             logger.error(f"统计检验失败 [{test_type}]: {e}")
             return {"test": test_type, "error": str(e)}

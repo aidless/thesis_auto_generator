@@ -12,12 +12,10 @@
 - 数据目录和临时目录可写性
 """
 
-import os
 import sys
 import importlib
-import subprocess
 from pathlib import Path
-from typing import List, Tuple, Dict
+from typing import List, Dict
 
 # ── 颜色输出 ──────────────────────────────────────────────
 
@@ -108,7 +106,7 @@ class EnvironmentChecker:
 
     def _check_dependencies(self) -> None:
         """检查 requirements.txt 中的依赖"""
-        print(f"\n📦 检查依赖包...")
+        print("\n📦 检查依赖包...")
         req_path = PROJECT_ROOT / "requirements.txt"
 
         if not req_path.exists():
@@ -171,7 +169,7 @@ class EnvironmentChecker:
 
     def _check_key_files(self) -> None:
         """检查关键文件完整性"""
-        print(f"\n📁 检查关键文件...")
+        print("\n📁 检查关键文件...")
         key_files = [
             "app.py",
             "config.py",
@@ -226,7 +224,7 @@ class EnvironmentChecker:
 
     def _check_api_key(self) -> None:
         """检查 API Key 配置"""
-        print(f"\n🔑 检查 API Key 配置...")
+        print("\n🔑 检查 API Key 配置...")
         env_path = PROJECT_ROOT / ".env"
 
         if not env_path.exists():
@@ -262,7 +260,7 @@ class EnvironmentChecker:
 
     def _check_dirs(self) -> None:
         """检查数据目录可写性"""
-        print(f"\n📂 检查数据目录...")
+        print("\n📂 检查数据目录...")
         dirs = [
             PROJECT_ROOT / "data" / "templates",
             PROJECT_ROOT / "data" / "output",
@@ -295,7 +293,7 @@ class EnvironmentChecker:
                 self.errors.append(f"模块导入失败: {module_name} ({e})")
                 print(Color.err(f"导入失败: {module_name}.{attr} — {e}"))
         else:
-            print(Color.ok(f"关键模块导入正常"))
+            print(Color.ok("关键模块导入正常"))
 
     # ── 输出 ──────────────────────────────────────────────
 
@@ -329,7 +327,7 @@ class EnvironmentChecker:
         # 最终判定
         if error_count == 0 and warn_count == 0:
             print(f"\n{Color.GREEN}{Color.BOLD}🎉 环境完美，可以直接启动！{Color.RESET}")
-            print(f"   启动命令: python app.py")
+            print("   启动命令: python app.py")
         elif error_count == 0:
             print(f"\n{Color.YELLOW}{Color.BOLD}⚠️  环境基本就绪，存在 {warn_count} 个警告，建议修复后再启动。{Color.RESET}")
         else:

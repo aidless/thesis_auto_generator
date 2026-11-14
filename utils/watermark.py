@@ -8,9 +8,8 @@
 伦理护栏：确保所有输出文档明确标注 AI 辅助生成属性。
 """
 
-import os
 import logging
-from typing import Optional, Dict, List
+from typing import Optional, Dict
 
 logger = logging.getLogger(__name__)
 
@@ -279,8 +278,8 @@ class AIParticipationTracker:
         lines = [
             "## 🤖 AI 参与度报告",
             "",
-            f"| 层级 | 描述 | 章节数 |",
-            f"|------|------|--------|",
+            "| 层级 | 描述 | 章节数 |",
+            "|------|------|--------|",
             f"| A | AI 生成，未修改 | {a_count} 章 |",
             f"| B | AI 初稿，已修改 | {b_count} 章 |",
             f"| C | 人工撰写 | {c_count} 章 |",

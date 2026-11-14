@@ -13,7 +13,7 @@ import os
 import sys
 import logging
 import threading
-from typing import Optional, Tuple, List, Dict, Any
+from typing import Optional, Tuple, List
 from datetime import datetime
 
 # 确保项目根目录在 sys.path 中
@@ -24,10 +24,7 @@ if PROJECT_ROOT not in sys.path:
 from config import GenerationConfig, load_config
 from core.models import (
     Thesis,
-    Outline,
-    OutlineNode,
     Chapter,
-    Reference,
     TemplateStyles,
 )
 from llm.base import create_llm_client
@@ -718,7 +715,7 @@ def on_stats_analysis(thesis: Optional[Thesis]) -> str:
         columns = thesis.user_data.get("data_columns", [])
         sample_count = len(data)
 
-        report = [f"## 📊 数据统计洞察", f""]
+        report = ["## 📊 数据统计洞察", ""]
 
         # 1. 实验设计检查
         report.append("### 1. 实验设计前置检查\n")
@@ -802,7 +799,7 @@ def on_plagiarism_check(thesis: Optional[Thesis]) -> str:
         checker = PlagiarismChecker()
         result = checker.check_document(full_text)
 
-        report = [f"## 🔍 查重预检", f""]
+        report = ["## 🔍 查重预检", ""]
         report.append(f"**风险等级**：{result.get('risk_level', 'low')}")
         report.append(f"**摘要**：{result.get('summary', '')}")
         report.append("")

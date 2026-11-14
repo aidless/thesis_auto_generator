@@ -14,7 +14,7 @@
 import re
 import hashlib
 import logging
-from typing import Dict, List, Tuple, Optional, Any
+from typing import Dict, List, Optional, Any
 from itertools import combinations
 
 logger = logging.getLogger(__name__)

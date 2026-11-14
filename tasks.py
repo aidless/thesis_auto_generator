@@ -15,9 +15,9 @@ import multiprocessing
 import queue
 import logging
 import traceback
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum
-from typing import Optional, Dict, Any, Callable
+from typing import Optional, Dict
 
 logger = logging.getLogger(__name__)
 
@@ -219,11 +219,9 @@ class AsyncTaskManager:
         from core.outline_generator import OutlineGenerator
         from core.chapter_generator import ChapterGenerator
         from core.reference_fetcher import ReferenceFetcher
-        from core.template_parser import TemplateParser
         from core.docx_formatter import DocxFormatter
         from llm.base import create_llm_client
         from utils.watermark import add_watermark_and_disclaimer
-        from config import OUTPUT_DIR
 
         # 反序列化
         config = GenerationConfig(**config_data)

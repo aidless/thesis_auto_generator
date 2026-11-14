@@ -16,10 +16,10 @@ DOCX 格式化器
 import re
 import os
 import logging
-from typing import List, Optional, Dict, Any
+from typing import List, Optional
 from datetime import datetime
 
-from core.models import Thesis, Chapter, Reference, TemplateStyles, StyleDef, Outline
+from core.models import Thesis, Chapter, Reference, TemplateStyles
 
 logger = logging.getLogger(__name__)
 

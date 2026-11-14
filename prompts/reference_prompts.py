@@ -38,7 +38,7 @@ def build_user_prompt(
     Returns:
         str: 完整的 user prompt
     """
-    prompt_parts = [f"请撰写以下论文章节的内容："]
+    prompt_parts = ["请撰写以下论文章节的内容："]
 
     if chapter_context:
         prompt_parts.append(f"\n前文摘要（保持上下文连贯）：\n{chapter_context}")

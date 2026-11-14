@@ -67,7 +67,6 @@ def run_headless_mode(args) -> int:
     from core.models import Thesis, TemplateStyles
     from core.review_engine import ReviewEngine
     from utils.watermark import add_watermark_and_disclaimer
-    from utils.text_utils import estimate_word_count
 
     topic = args.topic
     keywords = [k.strip() for k in args.keywords.split(",") if k.strip()]
@@ -166,7 +165,7 @@ def run_headless_mode(args) -> int:
     # Summary
     total_time = time.time() - total_start
     print(f"\n{'='*60}")
-    print(f"  🎉 生成完成!")
+    print("  🎉 生成完成!")
     print(f"  {'='*60}")
     print(f"  论文: {os.path.abspath(output_path)}")
     if review_path:

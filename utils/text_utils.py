@@ -5,7 +5,7 @@
 """
 
 import re
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Tuple
 
 
 def count_chinese_chars(text: str) -> int:

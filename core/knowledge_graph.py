@@ -9,8 +9,7 @@
 """
 
 import logging
-from typing import Dict, List, Optional, Tuple, Set, Any
-from collections import Counter
+from typing import Dict, List, Set, Any
 
 from core.models import Reference
 

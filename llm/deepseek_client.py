@@ -5,7 +5,7 @@ DeepSeek API 适配器
 DeepSeek 完全兼容 OpenAI chat/completions 接口。
 """
 
-from typing import Dict, List, Iterator, Optional
+from typing import Dict, List, Iterator
 import logging
 
 from llm.base import BaseLLMClient

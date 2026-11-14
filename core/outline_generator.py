@@ -11,9 +11,8 @@
 """
 
 import re
-import json
 import logging
-from typing import List, Optional
+from typing import List
 
 from llm.base import BaseLLMClient
 from core.models import Outline, OutlineNode

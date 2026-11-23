@@ -32,7 +32,10 @@ except ImportError:
     HAS_DOCX = False
 
 
-# 免责声明文本
+# 免责声明文本。这三句是伦理边界，README 开头必须原样出现。
+ETHICS_NO_SUBMIT = "严禁将生成内容直接作为学位论文提交"
+ETHICS_NO_FABRICATION = "不能防止编造数据"
+ETHICS_NO_PLAGIARISM = "不能防止抄袭"
 DISCLAIMER_TITLE = "免责声明"
 DISCLAIMER_BODY = (
     "本文档由「论文自动生成系统」使用 AI 大语言模型辅助生成，仅供学习、研究和参考之用。\n\n"
@@ -41,7 +44,9 @@ DISCLAIMER_BODY = (
     "2. 生成内容可能存在事实性错误、逻辑不严谨或引用不当等问题，"
     "使用者应自行核实所有内容的准确性。\n"
     "3. 本系统不承担因使用生成内容而产生的任何学术不端责任。"
-    "严禁将生成内容直接作为学位论文提交。\n"
+    f"{ETHICS_NO_SUBMIT}。"
+    f"本系统{ETHICS_NO_FABRICATION}，也{ETHICS_NO_PLAGIARISM}。"
+    "查重预检、文献检索和盲审都不是学术诚信保证。\n"
     "4. 使用本系统即表示您已阅读并同意上述条款。"
 )
 

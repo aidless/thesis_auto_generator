@@ -13,11 +13,13 @@ pip install -r requirements.txt   # if present
 ## Verifying your change
 
 ```bash
-python3 check_env.py
+python3 -m pip install -r requirements-check.txt
+make check
 ```
 
-If the repository has a `Makefile`, `make check` or the closest equivalent runs the same
-checks as CI. Please run it before opening a pull request.
+`make check` reruns the unit tests and recomputes the README table. It does not
+call DeepSeek, Semantic Scholar, or Crossref, and it does not need an API key.
+`check_env.py` is a separate diagnostic; it is not this result.
 
 ## Pull requests
 

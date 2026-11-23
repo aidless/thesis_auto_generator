@@ -1,14 +1,10 @@
 # CI for thesis_auto_generator
-# Runs the test suite and the environment check the generator needs.
+# The verify job runs `make check`: unit tests plus the README table.
+# That job does not call literature APIs and does not need an API key.
 #
-# Scope note, verified on 2026-10-05: check_env.py:151-162 decides "dependency
-# installed" by calling importlib.import_module on each name in requirements.txt.
-# gradio is in that file, but gradio 4.44 imports huggingface_hub's HfFolder, which
-# was removed in hub >= 1.0. So a clean runner resolves hub to the newest release,
-# the import raises ImportError, and check_env.py reports "gradio 未安装" even though
-# gradio is present and pip says it is installed. Pinning the transitive dependency
-# to the last pre-1.0 release is what makes this repository's own check able to pass.
-# requirements.txt should pin it too; that is a repository change, reported here.
+# mutation-control is separate. It installs requirements.txt and checks that
+# check_env.py fails when huggingface_hub>=1.0 removes HfFolder, which gradio
+# 4.44 still imports. That diagnostic is not the result in the README.
 name: CI
 
 on:
@@ -30,17 +26,8 @@ jobs:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: requirements.txt
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest
-          # gradio 4.44 -> huggingface_hub<1.0 (HfFolder was removed in 1.0)
-          pip install 'huggingface_hub<1.0'
-      - name: Run the test suite
-        run: python -m pytest -q
-      - name: check_env.py
-        run: python check_env.py
+      - name: Offline recompute (no literature APIs, no API key)
+        run: make check
 
   mutation-control:
     # Proves the environment gate can fail: with the pinned hub removed, the gradio

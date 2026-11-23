@@ -40,7 +40,11 @@ from utils.file_utils import (
     ensure_dir,
 )
 from utils.text_utils import estimate_word_count
-from utils.watermark import add_watermark_and_disclaimer
+from utils.watermark import (
+    ETHICS_NO_PLAGIARISM,
+    ETHICS_NO_SUBMIT,
+    add_watermark_and_disclaimer,
+)
 
 # P1 新增
 from core.data_importer import DataImporter
@@ -800,6 +804,10 @@ def on_plagiarism_check(thesis: Optional[Thesis]) -> str:
         result = checker.check_document(full_text)
 
         report = ["## 🔍 查重预检", ""]
+        report.append(
+            f"限度：{ETHICS_NO_PLAGIARISM}。{ETHICS_NO_SUBMIT}。"
+            "未发现内部重复只说明这些段落彼此不像，不是原创证明，也不是学校查重报告。"
+        )
         report.append(f"**风险等级**：{result.get('risk_level', 'low')}")
         report.append(f"**摘要**：{result.get('summary', '')}")
         report.append("")

@@ -1,4 +1,9 @@
-"""v2.1 第三次实测 — A+B 效果验证"""
+"""Optional online generator. Not part of `make check`.
+
+This script calls DeepSeek and the literature APIs. It does not write a token
+ledger or a cost, and the previous-run column below is a hardcoded string.
+Do not cite its printout as a recomputed result.
+"""
 import os, time, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

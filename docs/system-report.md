@@ -1,6 +1,8 @@
 # 论文自动生成系统 — 使用报告与系统说明
 
-> **版本**：v2.2 | **日期**：2026-06-08 | **测试**：189/189 | **仓库**：[github.com/aidless/thesis_auto_generator](https://github.com/aidless/thesis_auto_generator)
+> **版本**：v2.2 | **日期**：2026-06-08 | **离线复算**：见仓库根目录 `make check`（本文件不写死测试条数） | **仓库**：[github.com/aidless/thesis_auto_generator](https://github.com/aidless/thesis_auto_generator)
+
+> **未复算声明**：第 5 节的字数、耗时、表格数、文献数、费用和盲审分数只有本文字。仓库里没有这三次运行的日志、token 账本、盲审原文或输出 DOCX。`run_e2e_v3.py` 会调用 DeepSeek 与文献 API，并把上一轮字数和耗时写死在打印语句里。README 不再把这些数字当作结果。详见 `FAILURE_MODES.md`。
 
 ---
 
@@ -20,15 +22,15 @@
 
 ## 1. 系统概述
 
-**论文自动生成系统**是一台 AI 驱动的学术写作引擎。用户输入论文主题和关键词，系统调用 DeepSeek 大语言模型自动生成完整的毕业论文，包括大纲、分章节正文、真实参考文献、三线表、图表、公式等学术论文全部要素。
+**论文自动生成系统**是一个本地初稿工具。用户输入主题和关键词后，程序可以调用大语言模型写出大纲、章节和带水印的 DOCX。文献模块会访问外部 API，但本仓库没有保存检索结果，因此这里不能把文献称为已经核实。
 
-本系统面向 **2026 届软件工程专业毕业生**（专升本层次），可作为论文初稿生成和学术质量自检工具。严禁将生成内容直接作为学位论文提交。
+本系统可供学习格式和流程。严禁将生成内容直接作为学位论文提交。本系统不能防止编造数据，也不能防止抄袭。
 
 ### 核心能力一句话总结
 
 ```
-输入主题 → 自动生成大纲 → 逐章撰写正文（带表格+论证）→ 检索真实文献 → 输出格式化的 .docx
-→ 三位 AI Agent 并行盲审 → 输出修改建议 → 6 分钱/篇
+输入主题 → 生成大纲 → 逐章撰写 → 可选的文献 API → 带水印的 .docx
+→ 可选的 AI 评审（不保证判断可靠，也不计算费用）
 ```
 
 ---
@@ -212,9 +214,13 @@ python app.py --check
 | 方法 | 32/10 | major_revision | "缺乏对比实验，数据呈现 8/10（新维度生效）" |
 | 规范性 | 27/10 | major_revision | "参考文献列表缺失，逻辑结构 8/10" |
 
-**结论**：盲审 Agent 诚实且具体，能区分"工程报告"和"学术研究"，不输出模板化废话。
+> 上表没有对应的盲审原文。不要把这一次叙述当成评审器的稳定能力。
+
+**叙述中的结论（未复算）**：盲审 Agent 诚实且具体，能区分"工程报告"和"学术研究"，不输出模板化废话。该句没有独立证据，README 已撤回。
 
 ### 5.3 成本分析
+
+> 下面的 token 区间和单价没有账本。不要当成复算结果。
 
 ```
 总 Token ≈ 32,000-34,000 / 篇
@@ -287,7 +293,7 @@ thesis_auto_generator/          64 files, 12,862 lines
 │   ├── text_utils.py               文本工具
 │   └── file_utils.py               文件工具
 │
-├── tests/                       测试层（6 files, 189 tests）
+├── tests/                       测试层（条数见 README 的 make check）
 │   ├── test_e2e_mock.py            Mock 端到端测试（6 tests, 核心链路）
 │   ├── test_models.py
 │   ├── test_config.py
@@ -312,7 +318,7 @@ OutlineGenerator ──LLM──→ Outline (大纲树)
 ChapterGenerator ──LLM(+上下文)──→ Chapter[] (Markdown章节)
   │
   ▼
-ReferenceFetcher ──API──→ Reference[] (真实文献)
+ReferenceFetcher ──API──→ Reference[]（检索结果未在仓库保存）
   │
   ▼
 DocxFormatter ──python-docx──→ .docx (三线表/公式/图表/目录/水印)

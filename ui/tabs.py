@@ -12,12 +12,18 @@ Gradio Tab 页面定义
 
 import gradio as gr
 
+from config import APP_VERSION
 from ui.components import (
     create_markdown_editor,
     create_api_key_input,
     create_word_count_slider,
 )
 from utils.text_utils import estimate_word_count
+from utils.watermark import (
+    ETHICS_NO_FABRICATION,
+    ETHICS_NO_PLAGIARISM,
+    ETHICS_NO_SUBMIT,
+)
 
 
 def build_ui(config) -> gr.Blocks:
@@ -79,12 +85,12 @@ def build_ui(config) -> gr.Blocks:
 
         # ── 应用标题 ──
         gr.Markdown(
-            """
+            f"""
             # 📝 论文自动生成系统
             ### AI 辅助学术论文写作工具
 
-            ⚠️ **伦理声明**：本工具基于 AI 大语言模型辅助生成论文内容，仅供学习和研究参考。
-            严禁将生成内容直接作为学位论文提交。使用者应自行核实所有内容的准确性和原创性。
+            ⚠️ **{ETHICS_NO_SUBMIT}。** 本系统{ETHICS_NO_FABRICATION}，也{ETHICS_NO_PLAGIARISM}。
+            输出不是可提交的学位论文。查重、文献检索和盲审都不是学术诚信保证。
             """
         )
 
@@ -443,16 +449,16 @@ def build_ui(config) -> gr.Blocks:
                 format_check_result = gr.Markdown("")
 
                 gr.Markdown(
-                    """
+                    f"""
                     ---
                     ### ⚠️ 免责声明
 
                     本文档由 AI 辅助生成系统自动生成，仅供学习和研究参考。
 
                     - 生成内容可能存在事实性错误或逻辑不严谨
-                    - 严禁将生成内容直接作为学位论文提交
+                    - {ETHICS_NO_SUBMIT}
+                    - 本系统{ETHICS_NO_FABRICATION}，也{ETHICS_NO_PLAGIARISM}
                     - 使用者应自行核实所有内容的准确性
-                    - 引用规范请参照 GB/T 7714-2015
 
                     使用本系统即表示您已阅读并同意上述条款。
                     """
@@ -601,10 +607,11 @@ def build_ui(config) -> gr.Blocks:
 
             # ── 底部 ──
             gr.Markdown(
-                """
+                f"""
                 ---
                 <div style="text-align: center; color: #999; font-size: 12px;">
-                论文自动生成系统 v2.0 (P4) | 基于 DeepSeek/OpenAI 大语言模型 | 仅供学习研究参考
+                论文自动生成系统 v{APP_VERSION} | 仅供学习研究参考 |
+                {ETHICS_NO_SUBMIT} | 本系统{ETHICS_NO_FABRICATION}，也{ETHICS_NO_PLAGIARISM}
                 </div>
                 """
             )

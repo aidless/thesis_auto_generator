@@ -166,9 +166,13 @@ class TestSaveUploadedFile(unittest.TestCase):
             shutil.rmtree(target, ignore_errors=True)
 
     def test_save_with_default_dir(self):
-        """测试使用默认目标目录"""
+        """默认目录可写；测完删除，避免把占位文件留在 data/templates。"""
         result = save_uploaded_file(self.source_file)
+        self.addCleanup(os.remove, result)
         self.assertTrue(os.path.isfile(result))
+        self.assertTrue(
+            os.path.abspath(result).startswith(os.path.abspath(get_template_dir()))
+        )
 
     def test_file_content_preserved(self):
         """测试文件内容保留"""

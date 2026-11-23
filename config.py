@@ -23,6 +23,9 @@ from core.models import GenerationConfig
 # 加载 .env 文件（若存在）
 load_dotenv()
 
+# 单一版本字符串。README 标题、启动横幅和文档页眉都要和它一致。
+APP_VERSION: str = "2.2"
+
 # ── 默认常量 ──────────────────────────────────────────────
 DEFAULT_WORD_COUNT: int = 15000
 DEFAULT_DISCIPLINE: str = "软件工程"

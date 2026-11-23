@@ -20,6 +20,11 @@ from typing import List, Optional
 from datetime import datetime
 
 from core.models import Thesis, Chapter, Reference, TemplateStyles
+from utils.watermark import (
+    ETHICS_NO_FABRICATION,
+    ETHICS_NO_PLAGIARISM,
+    ETHICS_NO_SUBMIT,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -221,7 +226,8 @@ class DocxFormatter:
         gen_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
         gen_run = gen_para.add_run(
             f"本文由 AI 辅助生成系统于 {datetime.now().strftime('%Y年%m月%d日')} 生成\n"
-            "仅供学习研究参考 · 严禁直接作为学位论文提交"
+            f"仅供学习研究参考 · {ETHICS_NO_SUBMIT} · "
+            f"本系统{ETHICS_NO_FABRICATION}，也{ETHICS_NO_PLAGIARISM}"
         )
         gen_run.font.size = Pt(10)
         gen_run.font.color.rgb = RGBColor(128, 128, 128)

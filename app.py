@@ -28,8 +28,19 @@ if PROJECT_ROOT not in sys.path:
 
 import gradio as gr
 
-from config import load_config
+from config import APP_VERSION, load_config
 from ui.tabs import build_ui
+from utils.watermark import (
+    ETHICS_NO_FABRICATION,
+    ETHICS_NO_PLAGIARISM,
+    ETHICS_NO_SUBMIT,
+)
+
+
+def print_ethics() -> None:
+    """Print the submission boundary on every entry path."""
+    print(f"  {ETHICS_NO_SUBMIT}。")
+    print(f"  本系统{ETHICS_NO_FABRICATION}，也{ETHICS_NO_PLAGIARISM}。")
 
 
 def create_app(use_async: bool = False) -> gr.Blocks:
@@ -191,8 +202,9 @@ def run_check_mode() -> bool:
     import subprocess
 
     print("=" * 60)
-    print("  论文自动生成系统 v2.0 — 离线体检模式")
+    print(f"  论文自动生成系统 v{APP_VERSION} — 离线体检模式")
     print("  (不启动 Web 服务，仅运行诊断和测试)")
+    print_ethics()
     print("=" * 60)
     print()
 
@@ -244,7 +256,7 @@ def run_check_mode() -> bool:
 
 def main():
     """主入口函数"""
-    parser = argparse.ArgumentParser(description="论文自动生成系统 v2.1")
+    parser = argparse.ArgumentParser(description=f"论文自动生成系统 v{APP_VERSION}")
     parser.add_argument("--async", dest="async_mode", action="store_true", help="启用异步生成模式")
     parser.add_argument("--check", dest="check_mode", action="store_true", help="离线体检模式")
     # --headless 参数
@@ -256,6 +268,7 @@ def main():
     parser.add_argument("--output", type=str, default="", help="输出文件路径")
     parser.add_argument("--review", action="store_true", help="生成后自动运行盲审")
     args = parser.parse_args()
+    print_ethics()
 
     # --headless
     if args.headless:
@@ -277,7 +290,7 @@ def main():
         config.async_mode = True
 
     print("=" * 60)
-    print("  论文自动生成系统 v2.0 (P4)")
+    print(f"  论文自动生成系统 v{APP_VERSION}")
     print("  Thesis Auto Generator")
     print("=" * 60)
     print(f"  LLM 提供商: {config.llm_provider}")
@@ -286,9 +299,6 @@ def main():
     print(f"  默认学科: {config.discipline}")
     print(f"  默认字数: {config.target_word_count:,}")
     print("=" * 60)
-    print()
-    print("  ⚠️ 伦理声明：本工具仅供学习和研究参考，")
-    print("    严禁将生成内容直接作为学位论文提交。")
     print()
 
     app = create_app(use_async=config.async_mode)
